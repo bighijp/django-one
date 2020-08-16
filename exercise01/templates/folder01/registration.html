@@ -1,0 +1,27 @@
+
+{% extends 'folder01/base.html' %}
+
+{% block body_block %}
+
+<div class="container">
+  <div class="jumbotron">
+    {% if registered %}
+      <h1>Thank you for resistering</h1>
+    {% else %}
+      <h1>Register here</h1>
+      <h3>Fill out the form:</h3>
+
+      <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{user_form.as_p}}
+        {{profile_form.as_p}}
+        <input type="submit" class="btn btn-primary" name="" value="Register">
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'folder01/base.html' %}
+
+{% load static %}
+
+
+
+
+{% block body_block %}
+
+
+<div class="jumbotron">
+  <table>
+
+    <tr>
+      <th>KEY</th>
+      <th>VALUE</th>
+    </tr>
+
+    {% if users_list %}
+
+      {% for data in users_list %}
+
+        {% for key,value in data.items %}
+        <tr>
+          <td>{{ key }}</td>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+
+      {% endfor %}
+    {% endif %}
+  </table>
+</div>
+{% endblock %}
+
+</body>
+
+</html>

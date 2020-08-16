@@ -1,0 +1,26 @@
+img {
+  border-radius: 8px;
+  width: 800px;
+  height: 600px;
+}
+
+.guest-map {
+  background-color: #6C5CFF;
+}
+
+#mysql-int {
+  background-color: #FF5C5C;
+}
+
+#todolist {
+  background-color: #7FFF5C;
+}
+
+.lista td {
+  color: white;
+  background-color: coral;
+}
+
+.lista a:visited {
+  color: white;
+}
