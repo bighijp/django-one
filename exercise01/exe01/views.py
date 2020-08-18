@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from exe01.test import raddoppio
 
 
 # Create your views here.
@@ -109,4 +110,6 @@ def user_login(request):
 
 def apps(request):
 
-    return render(request, 'folder01/apps.html')
+    num = raddoppio(5)
+
+    return render(request, 'folder01/apps.html', {'num' : num })
