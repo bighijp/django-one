@@ -22,9 +22,27 @@
 <div class="container">
   <div class="jumbotron">
 
-    <h1>
-      {{ num }}
-    </h1>
+    <p>
+      {{ test }}
+    </p>
+    <h3>Selezionare il file:</h3>
+
+    <form method="post" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- {{user_form.as_p}}
+      {{profile_form.as_p}} -->
+      <input type="file" name="myfile">
+      <input type="submit" class="btn btn-primary" name="" value="Upload">
+    </form>
+
+    {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+    {% endif %}
+
+    {% for item in file_ex %}
+    <p>{{ item }}</p>
+    {% endfor%}
+
 
   </div>
 

@@ -2,13 +2,15 @@ from django.shortcuts import render
 from exe01.forms import UserProfileInfoForm, UserForm
 from exe01.models import UserProfileInfo
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 
 # funzioni per il processo login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from exe01.test import raddoppio
+from exe01.funzioni import raddoppio, import_file, normaliz_path
+
 
 
 # Create your views here.
@@ -102,14 +104,27 @@ def user_login(request):
     else:
         return render(request, 'folder01/login.html', {})
 
-
-
-
-
-
-
+"""
 def apps(request):
 
     num = raddoppio(5)
 
-    return render(request, 'folder01/apps.html', {'num' : num })
+    return render(request, 'folder01/apps.html', {'num' : num, 'test' : settings.MEDIA_DIR })
+
+
+"""
+def apps(request):
+
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        file_ex = import_file(normaliz_path(uploaded_file_url))
+        return render(request, 'folder01/apps.html', {
+            'uploaded_file_url': uploaded_file_url, 'file_ex' : file_ex
+        })
+
+
+
+    return render(request, 'folder01/apps.html', {})
